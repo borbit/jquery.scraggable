@@ -1,0 +1,28 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <title>jquery.scraggable</title>
+    <script type="text/javascript" src="jquery.min.js"></script>
+    <script type="text/javascript" src="jquery.scraggable.js"></script>
+
+    <style type="text/css">
+        #scragme {
+            position:absolute;
+            left:200px;
+            top:100px;
+            height:100px;
+            width:100px;
+            border:1px solid blue;
+        }
+    </style>
+
+    <script type="text/javascript">
+        $(function() {
+             $('#scragme').scraggable();
+        });
+    </script>
+</head>
+<body>
+    <div id="scragme">scrag me</div>
+</body>
+</html>
