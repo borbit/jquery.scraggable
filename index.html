@@ -6,10 +6,18 @@
     <script type="text/javascript" src="jquery.scraggable.js"></script>
 
     <style type="text/css">
+        #parent {
+            position:absolute;
+            top:100px;
+            left:100px;
+            width:500px;
+            height:500px;
+            border:1px solid green;
+        }
         #scragme {
             position:absolute;
-            left:200px;
-            top:100px;
+            left:0px;
+            top:0px;
             height:100px;
             width:100px;
             border:1px solid blue;
@@ -18,11 +26,15 @@
 
     <script type="text/javascript">
         $(function() {
-             $('#scragme').scraggable();
+             $('#scragme').scraggable({
+                 parent: document.getElementById('parent')
+             });
         });
     </script>
 </head>
 <body>
-    <div id="scragme">scrag me</div>
+    <div id="parent">
+        <div id="scragme">scrag me</div>
+    </div>
 </body>
 </html>
