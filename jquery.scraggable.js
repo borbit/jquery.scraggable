@@ -12,6 +12,7 @@ $.fn.scraggable.defaults = {
     axis: false,
     parent: false,
     sensitivity: 1,
+    inverted: false,
     containment: false
 };
 
@@ -97,11 +98,14 @@ function process(element, options) {
     }
 
     function setPosition(newOffset) {
+        var diffTop = newOffset.top - offset.top;
+        var diffLeft = newOffset.left - offset.left;
+        
         if (!options.axis || options.axis == 'x') {
-            position.left = position.left + newOffset.left - offset.left;
+            position.left = position.left + (options.inverted ? diffTop : diffLeft);
         }
         if (!options.axis || options.axis == 'y') {
-            position.top = position.top + newOffset.top - offset.top;
+            position.top = position.top + (options.inverted ? diffLeft : diffTop);
         }
 
         element.css({

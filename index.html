@@ -36,10 +36,10 @@
 
     <script type="text/javascript">
         $(function() {
-             $('#first').scraggable({containment: 'parent'});
+             $('#first').scraggable({containment: 'parent', inverted: true});
              $('#second').scraggable({containment: 'document'});
              $('#third').scraggable({containment: 'parent', parent: '#parentThird'});
-             $('#fourth').scraggable({axis: 'x'});
+             $('#fourth').scraggable({axis: 'x', inverted: true});
         });
     </script>
 </head>
