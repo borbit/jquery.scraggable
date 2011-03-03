@@ -38,10 +38,7 @@ function process(element, options) {
         if (options.parent == false) {
             parent = element.parent();
         }
-    }
-
-    if (options.containment == false ||
-        options.containment == 'document') {
+    } else {
         parent = $(window.document);
     }
 
@@ -54,16 +51,23 @@ function process(element, options) {
 
     if (options.containment == 'document') {
         bounds = {
-            top: 0, left: 0,
-            bottom: parent.height(),
-            right: parent.width()
+            left: 0, top: 0,
+            right: parent.width(),
+            bottom: parent.height()
         };
-    } else if (options.containment) {
+    } else if (options.containment == 'parent') {
         var parentOffset = parent.offset();
         bounds = {
-            top: parentOffset.top, left: parentOffset.left,
-            bottom: parentOffset.top + parent.outerHeight(),
-            right: parentOffset.left + parent.outerWidth()
+            left: parentOffset.left, top: parentOffset.top,
+            right: parentOffset.left + parent.outerWidth(),
+            bottom: parentOffset.top + parent.outerHeight()
+        };
+    } else if ($.isArray(options.containment)) {
+        bounds = {
+            left: options.containment[0],
+            top: options.containment[1],
+            right: options.containment[2],
+            bottom: options.containment[3]
         };
     }
 

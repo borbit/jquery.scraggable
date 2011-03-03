@@ -37,7 +37,7 @@
     <script type="text/javascript">
         $(function() {
              $('#first').scraggable({containment: 'parent', inverted: true});
-             $('#second').scraggable({containment: 'document'});
+             $('#second').scraggable({containment: [300, 100, 800, 300]});
              $('#third').scraggable({containment: 'parent', parent: '#parentThird'});
              $('#fourth').scraggable({axis: 'x', inverted: true});
         });
