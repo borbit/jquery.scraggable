@@ -16,11 +16,11 @@ $.fn.scraggable.defaults = {
 };
 
 function process(element, options) {
-    var width = element.outerWidth();
-    var height = element.outerHeight();
-    var position = element.position();
-    var offset = element.offset();
-    var parent = null;
+    var width = element.outerWidth(),
+        height = element.outerHeight(),
+        position = element.position(),
+        offset = element.offset(),
+        parent = null;
 
     if (options.containment == 'parent') {
         if (typeof(options.parent) == 'object' &&
@@ -68,40 +68,42 @@ function process(element, options) {
 
     function onmousewhell(event) {
         var wheelDelta = getWheelDelta(event);
-
-        position = fixPosition(
+        var newOffset = fixOffset(
             offset.left + (wheelDelta[0] * options.sensitivity),
-            offset.top + (wheelDelta[1] * options.sensitivity));
+            offset.top + (wheelDelta[1] * options.sensitivity))
+
+        setPosition(newOffset);
+    }
+
+    function fixOffset(left, top) {
+        if (left < bounds.left) {
+            left = bounds.left;
+        }
+        if (left + width > bounds.right) {
+            left = bounds.right - width;
+        }
+        if (top < bounds.top) {
+            top = bounds.top;
+        }
+        if (top + height > bounds.bottom) {
+            top = bounds.bottom - height;
+        }
+
+        return {top: top, left: left}
+    }
+
+    function setPosition(newOffset) {
+        position = {
+            top: position.top + newOffset.top - offset.top,
+            left: position.left + newOffset.left - offset.left
+        };
 
         element.css({
             top: position.top,
             left: position.left
         });
-    }
 
-    function fixPosition(newLeft, newTop) {
-        if (newLeft < bounds.left) {
-            newLeft = bounds.left;
-        }
-        if (newLeft + width > bounds.right) {
-            newLeft = bounds.right - width;
-        }
-        if (newTop < bounds.top) {
-            newTop = bounds.top;
-        }
-        if (newTop + height > bounds.bottom) {
-            newTop = bounds.bottom - height;
-        }
-
-        var newPos = {
-            top: position.top + newTop - offset.top,
-            left: position.left + newLeft - offset.left
-        };
-
-        offset.top = newTop;
-        offset.left = newLeft;
-
-        return newPos;
+        offset = newOffset;
     }
 
     function getWheelDelta(event) {
