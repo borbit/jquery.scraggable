@@ -68,35 +68,41 @@ function process(element, options) {
 
     function onmousewhell(event) {
         var wheelDelta = getWheelDelta(event);
-        var newOffset = fixOffset(
-            offset.left + (wheelDelta[0] * options.sensitivity),
-            offset.top + (wheelDelta[1] * options.sensitivity))
+        var newOffset = {
+            left: offset.left + (wheelDelta[0] * options.sensitivity),
+            top: offset.top + (wheelDelta[1] * options.sensitivity)
+        };
+
+        if (bounds) {
+            newOffset = fixOffset(newOffset);
+        }
 
         setPosition(newOffset);
     }
 
-    function fixOffset(left, top) {
-        if (left < bounds.left) {
-            left = bounds.left;
+    function fixOffset(newOffset) {
+        if (newOffset.left < bounds.left) {
+            newOffset.left = bounds.left;
         }
-        if (left + width > bounds.right) {
-            left = bounds.right - width;
+        if (newOffset.left + width > bounds.right) {
+            newOffset.left = bounds.right - width;
         }
-        if (top < bounds.top) {
-            top = bounds.top;
+        if (newOffset.top < bounds.top) {
+            newOffset.top = bounds.top;
         }
-        if (top + height > bounds.bottom) {
-            top = bounds.bottom - height;
+        if (newOffset.top + height > bounds.bottom) {
+            newOffset.top = bounds.bottom - height;
         }
-
-        return {top: top, left: left}
+        return newOffset;
     }
 
     function setPosition(newOffset) {
-        position = {
-            top: position.top + newOffset.top - offset.top,
-            left: position.left + newOffset.left - offset.left
-        };
+        if (!options.axis || options.axis == 'x') {
+            position.left = position.left + newOffset.left - offset.left;
+        }
+        if (!options.axis || options.axis == 'y') {
+            position.top = position.top + newOffset.top - offset.top;
+        }
 
         element.css({
             top: position.top,

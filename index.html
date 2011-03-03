@@ -39,6 +39,7 @@
              $('#first').scraggable({containment: 'parent'});
              $('#second').scraggable({containment: 'document'});
              $('#third').scraggable({containment: 'parent', parent: '#parentThird'});
+             $('#fourth').scraggable({axis: 'x'});
         });
     </script>
 </head>
@@ -56,6 +57,12 @@
     <div class="parent" id="parentThird" style="left:640px;">
         <div class="binder">
             <div class="scrollme" id="third">scroll me</div>
+        </div>
+    </div>
+
+    <div class="parent" style="left:970px;">
+        <div class="binder">
+            <div class="scrollme" id="fourth">scroll me</div>
         </div>
     </div>
 </body>
