@@ -6,35 +6,57 @@
     <script type="text/javascript" src="jquery.scraggable.js"></script>
 
     <style type="text/css">
-        #parent {
+        .parent {
             position:absolute;
-            top:100px;
-            left:100px;
-            width:500px;
-            height:500px;
+            width:300px;
+            height:300px;
             border:1px solid green;
         }
-        #scragme {
+        .binder {
+            position:absolute;
+            top:50px;
+            left:50px;
+            width:200px;
+            height:200px;
+            border:1px solid green;
+        }
+        .scrollme {
             position:absolute;
             left:0px;
             top:0px;
-            height:100px;
-            width:100px;
+            height:80px;
+            width:80px;
             border:1px solid blue;
+        }
+        body {
+            padding:0;
+            margin:0;
         }
     </style>
 
     <script type="text/javascript">
         $(function() {
-             $('#scragme').scraggable({
-                 parent: document.getElementById('parent')
-             });
+             $('#first').scraggable({containment: 'parent'});
+             $('#second').scraggable({containment: 'document'});
+             $('#third').scraggable({containment: 'parent', parent: '#parentThird'});
         });
     </script>
 </head>
 <body>
-    <div id="parent">
-        <div id="scragme">scrag me</div>
+    <div class="parent">
+        <div class="scrollme" id="first">scroll me</div>
+    </div>
+
+    <div class="parent" style="left:320px;">
+        <div class="binder">
+            <div class="scrollme" id="second">scroll me</div>
+        </div>
+    </div>
+
+    <div class="parent" id="parentThird" style="left:640px;">
+        <div class="binder">
+            <div class="scrollme" id="third">scroll me</div>
+        </div>
     </div>
 </body>
 </html>
