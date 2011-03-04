@@ -36,7 +36,7 @@
 
     <script type="text/javascript">
         $(function() {
-             $('#first').scraggable({containment: 'parent', inverted: true});
+             $('#first').scraggable({containment: 'parent'});
              $('#second').scraggable({containment: [300, 100, 800, 300]});
              $('#third').scraggable({containment: 'parent', parent: '#parentThird'});
              $('#fourth').scraggable({axis: 'x', inverted: true});
@@ -45,7 +45,14 @@
 </head>
 <body>
     <div class="parent">
-        <div class="scrollme" id="first">scroll me</div>
+        <div class="binder" style="top:100px;left:100px;height:100px;width:100px;overflow:hidden;">
+            <div class="binder" style="top:-100px;left:0px;height:300px;width:100px;">
+                <div id="first" class="scrollme" style="width:100px;height:200px;">
+                    scroll me scroll me scroll me scroll me scroll me scroll me scroll me scroll me
+                    scroll me scroll me scroll me scroll me scroll me scroll me scroll me scroll me
+                </div>
+            </div>
+        </div>
     </div>
 
     <div class="parent" style="left:320px;">
