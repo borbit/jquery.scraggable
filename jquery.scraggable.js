@@ -1,11 +1,48 @@
 (function($, undefined) {
 
-$.fn.scraggable = function(options) {
-    options = $.extend({}, $.fn.scraggable.defaults, options);
+var cache = {};
 
-    return this.each(function() {
-        new Scraggable($(this), options);
-    });
+$.fn.scraggable = function(options) {
+    var selector = this.selector;
+    
+    if (typeof(options) == 'string' &&
+        $.isFunction($.fn.scraggable.methods[options])) {
+        $.fn.scraggable.methods[options](selector);
+    } else {
+        options = $.extend({}, $.fn.scraggable.defaults, options);
+        this.each(function() {
+            if (cache[selector] == null) {
+                cache[selector] = [];
+            }
+            cache[selector].push(new Scraggable($(this), options));
+        });
+    }
+
+    return this;
+};
+
+$.fn.scraggable.methods = {
+    update: function(selector) {
+        if (cache[selector] != null) {
+            $.each(cache[selector], function() {
+                this.updateLocation();
+            });
+        }
+    },
+    enable: function(selector) {
+        if (cache[selector] != null) {
+            $.each(cache[selector], function() {
+                this.enableWheelHandling();
+            });
+        }
+    },
+    disable: function(selector) {
+        if (cache[selector] != null) {
+            $.each(cache[selector], function() {
+                this.disableWheelHandling();
+            });
+        }
+    }
 };
 
 $.fn.scraggable.defaults = {
@@ -19,12 +56,7 @@ $.fn.scraggable.defaults = {
 function Scraggable(element, options) {
     this.element = element;
     this.options = options;
-
-    this.width = this.element.outerWidth();
-    this.height = this.element.outerHeight();
-    this.position = this.element.position();
-    this.offset = this.element.offset();
-    this.parent = null;
+    this.enabled = true;
 
     if (options.containment == 'parent') {
         if (typeof(this.options.parent) == 'object' &&
@@ -45,19 +77,36 @@ function Scraggable(element, options) {
         this.parent = $(window.document);
     }
 
-    this.bounds = this.getBounds();
-
-    if (this.parent.get(0).addEventListener) {
-        this.parent.get(0).addEventListener('mousewheel', onmousewhell, false);
-        this.parent.get(0).addEventListener('DOMMouseScroll', onmousewhell, false);
-    }
-
     var self = this;
-
-    function onmousewhell(event) {
+    this.onmousewhell = function(event) {
         self.processMouseWhell(event);
-    }
+    };
+
+    this.updateLocation();
+    this.enableWheelHandling();
 }
+
+Scraggable.prototype.updateLocation = function() {
+    this.width = this.element.outerWidth();
+    this.height = this.element.outerHeight();
+    this.position = this.element.position();
+    this.offset = this.element.offset();
+    this.bounds = this.getBounds();
+};
+
+Scraggable.prototype.enableWheelHandling = function() {
+    if (this.parent.get(0).addEventListener) {
+        this.parent.get(0).addEventListener('mousewheel', this.onmousewhell, false);
+        this.parent.get(0).addEventListener('DOMMouseScroll', this.onmousewhell, false);
+    }
+};
+
+Scraggable.prototype.disableWheelHandling = function() {
+    if (this.parent.get(0).removeEventListener) {
+        this.parent.get(0).removeEventListener('mousewheel', this.onmousewhell, false);
+        this.parent.get(0).removeEventListener('DOMMouseScroll', this.onmousewhell, false);
+    }
+};
 
 Scraggable.prototype.processMouseWhell = function(event) {
     var wheelDelta = this.getWheelDelta(event);
