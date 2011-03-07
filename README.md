@@ -26,7 +26,7 @@ To let your element(s) be scraggable just:
 
 * *sensitivity*
 
-    An abstract <code>float</code> value for scroll sensitivity to regulate dragging speed. Default: <code>0</code>
+    An abstract <code>float</code> value for scroll sensitivity to regulate dragging speed. Default: <code>1</code>
 
 * *inverted*
 
