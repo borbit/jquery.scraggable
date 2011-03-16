@@ -80,6 +80,11 @@ function Scraggable(element, options) {
     var self = this;
     this.onmousewhell = function(event) {
         self.processMouseWhell(event);
+        if (event.preventDefault) {
+            event.preventDefault();
+        } else {
+            event.returnValue = false;
+        }
     };
 
     this.updateLocation();
