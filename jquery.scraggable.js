@@ -4,7 +4,7 @@ var cache = {};
 
 $.fn.scraggable = function(options) {
     var selector = this.selector;
-    
+
     if (typeof(options) == 'string' &&
         $.isFunction($.fn.scraggable.methods[options])) {
         $.fn.scraggable.methods[options](selector);
@@ -22,13 +22,6 @@ $.fn.scraggable = function(options) {
 };
 
 $.fn.scraggable.methods = {
-    update: function(selector) {
-        if (cache[selector] != null) {
-            $.each(cache[selector], function() {
-                this.updateLocation();
-            });
-        }
-    },
     enable: function(selector) {
         if (cache[selector] != null) {
             $.each(cache[selector], function() {
@@ -48,7 +41,7 @@ $.fn.scraggable.methods = {
 $.fn.scraggable.defaults = {
     axis: false,
     parent: false,
-    sensitivity: 1,
+    sensitivity: 5,
     inverted: false,
     containment: false
 };
@@ -57,6 +50,8 @@ function Scraggable(element, options) {
     this.element = element;
     this.options = options;
     this.enabled = true;
+    this.dragStarted = false;
+    this.stopTimer = null;
 
     if (options.containment == 'parent') {
         if (typeof(this.options.parent) == 'object' &&
@@ -79,6 +74,9 @@ function Scraggable(element, options) {
 
     var self = this;
     this.onmousewhell = function(event) {
+        if (!self.dragStarted) {
+            self.updateLocation();
+        }
         self.processMouseWhell(event);
         if (event.preventDefault) {
             event.preventDefault();
@@ -160,6 +158,26 @@ Scraggable.prototype.setPosition = function(newOffset) {
     });
 
     this.offset = newOffset;
+
+    // FIRING EVENTS
+    var ui = { position: this.position };
+
+    if (!this.dragStarted) {
+        this.element.trigger('dragstart', ui);
+        this.dragStarted = true;
+    }
+
+    this.element.trigger('drag', ui);
+
+    if (this.stopTimer) {
+        clearTimeout(this.stopTimer);
+    }
+
+    var self = this;
+    this.stopTimer = setTimeout(function() {
+        self.element.trigger('dragstop', ui);
+        self.dragStarted = false;
+    }, 100);
 };
 
 Scraggable.prototype.getWheelDelta = function(event) {

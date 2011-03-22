@@ -50,10 +50,6 @@ To let your element(s) be scraggable just:
 
     Disable the scraggable.
 
-* *update*
-
-    Update location. Note: Dragging of an element depends on initial position of the element and its containment. So if any of this elements changed its position or size this method should be called.
-
 ## Compatibilty
 
 Tested in:
