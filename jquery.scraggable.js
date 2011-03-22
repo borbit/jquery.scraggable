@@ -1,40 +1,25 @@
 (function($, undefined) {
 
-var cache = {};
-
 $.fn.scraggable = function(options) {
-    var selector = this.selector;
+    var scraggable = this.data('scraggable');
 
-    if (typeof(options) == 'string' &&
+    if (typeof(options) == 'string' && scraggable &&
         $.isFunction($.fn.scraggable.methods[options])) {
-        $.fn.scraggable.methods[options](selector);
-    } else {
+        $.fn.scraggable.methods[options].apply(scraggable);
+    } else if (!scraggable) {
         options = $.extend({}, $.fn.scraggable.defaults, options);
-        this.each(function() {
-            if (cache[selector] == null) {
-                cache[selector] = [];
-            }
-            cache[selector].push(new Scraggable($(this), options));
-        });
+        this.data(new Scraggable(this, options));
     }
 
     return this;
 };
 
 $.fn.scraggable.methods = {
-    enable: function(selector) {
-        if (cache[selector] != null) {
-            $.each(cache[selector], function() {
-                this.enableWheelHandling();
-            });
-        }
+    enable: function() {
+        this.enableWheelHandling();
     },
-    disable: function(selector) {
-        if (cache[selector] != null) {
-            $.each(cache[selector], function() {
-                this.disableWheelHandling();
-            });
-        }
+    disable: function() {
+        this.disableWheelHandling();
     }
 };
 
