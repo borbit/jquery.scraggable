@@ -70,6 +70,14 @@ function Scraggable(element, options) {
         }
     };
 
+    this.scaleFactor = 2;
+    if (navigator.userAgent.indexOf('Safari') != -1 &&
+        navigator.userAgent.indexOf('Chrome') == -1) {
+        this.scaleFactor = 1200;
+    } else if (navigator.userAgent.indexOf('Chrome') != -1) {
+        this.scaleFactor = 60;
+    }
+
     this.updateLocation();
     this.enableWheelHandling();
 }
@@ -98,7 +106,10 @@ Scraggable.prototype.disableWheelHandling = function() {
 
 Scraggable.prototype.processMouseWhell = function(event) {
     var wheelDelta = this.getWheelDelta(event);
+
     var newOffset = {
+        //left: Math.floor(this.offset.left + (wheelDelta[0] * this.options.sensitivity)),
+        //top: Math.floor(this.offset.top + (wheelDelta[1] * this.options.sensitivity))
         left: this.offset.left + (wheelDelta[0] * this.options.sensitivity),
         top: this.offset.top + (wheelDelta[1] * this.options.sensitivity)
     };
@@ -169,19 +180,22 @@ Scraggable.prototype.getWheelDelta = function(event) {
     // FIREFOX
     if (event.axis != null) {
         if (event.axis == event.HORIZONTAL_AXIS) {
-            return [-event.detail / 2, 0];
+            return [-event.detail / this.scaleFactor, 0];
         }
         if (event.axis == event.VERTICAL_AXIS) {
-            return [0, -event.detail / 2];
+            return [0, -event.detail / this.scaleFactor];
         }
     }
     // WEBKIT
     if (event.wheelDeltaX != null && event.wheelDeltaY != null) {
-        return [event.wheelDeltaX / 60, event.wheelDeltaY / 60];
+        return [
+            event.wheelDeltaX / this.scaleFactor,
+            event.wheelDeltaY / this.scaleFactor
+        ];
     }
     // OPERA
     if (event.detail != null && event.axis == null) {
-        return [0, -event.detail / 2];
+        return [0, -event.detail / this.scaleFactor];
     }
 
     return [0, 0];
