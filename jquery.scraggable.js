@@ -37,24 +37,20 @@ function Scraggable(element, options) {
     this.enabled = true;
     this.dragStarted = false;
     this.stopTimer = null;
-
-    if (options.containment == 'parent') {
-        if (typeof(this.options.parent) == 'object' &&
-            this.options.parent.jquery !== undefined) {
-            this.parent = this.options.parent;
-        }
-        if (typeof(this.options.parent) == 'object' &&
-            this.options.parent.tagName !== undefined) {
-            this.parent = $(this.options.parent);
-        }
-        if (typeof(this.options.parent) == 'string') {
-            this.parent = $(this.options.parent);
-        }
-        if (this.options.parent == false) {
-            this.parent = this.element.parent();
-        }
-    } else {
-        this.parent = $(window.document);
+    
+    if (typeof(this.options.parent) == 'object' &&
+        this.options.parent.jquery !== undefined) {
+        this.parent = this.options.parent;
+    }
+    if (typeof(this.options.parent) == 'object' &&
+        this.options.parent.tagName !== undefined) {
+        this.parent = $(this.options.parent);
+    }
+    if (typeof(this.options.parent) == 'string') {
+        this.parent = $(this.options.parent);
+    }
+    if (this.options.parent == false) {
+        this.parent = this.element.parent();
     }
 
     var self = this;
@@ -85,6 +81,7 @@ function Scraggable(element, options) {
 Scraggable.prototype.updateLocation = function() {
     this.width = this.element.outerWidth();
     this.height = this.element.outerHeight();
+    this.originalPosition = this.element.position();
     this.position = this.element.position();
     this.offset = this.element.offset();
     this.bounds = this.getBounds();
@@ -156,7 +153,10 @@ Scraggable.prototype.setPosition = function(newOffset) {
     this.offset = newOffset;
 
     // FIRING EVENTS
-    var ui = { position: this.position };
+    var ui = { 
+        position: this.position,
+        originalPosition: this.originalPosition
+    };
 
     if (!this.dragStarted) {
         this.element.trigger('dragstart', ui);
@@ -171,6 +171,7 @@ Scraggable.prototype.setPosition = function(newOffset) {
 
     var self = this;
     this.stopTimer = setTimeout(function() {
+        console.log(ui);
         self.element.trigger('dragstop', ui);
         self.dragStarted = false;
     }, 100);
