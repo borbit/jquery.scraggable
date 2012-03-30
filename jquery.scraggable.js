@@ -37,7 +37,7 @@ function Scraggable(element, options) {
     this.enabled = true;
     this.dragStarted = false;
     this.stopTimer = null;
-    
+
     if (typeof(this.options.parent) == 'object' &&
         this.options.parent.jquery !== undefined) {
         this.parent = this.options.parent;
@@ -153,7 +153,7 @@ Scraggable.prototype.setPosition = function(newOffset) {
     this.offset = newOffset;
 
     // FIRING EVENTS
-    var ui = { 
+    var ui = {
         position: this.position,
         originalPosition: this.originalPosition
     };
@@ -171,7 +171,6 @@ Scraggable.prototype.setPosition = function(newOffset) {
 
     var self = this;
     this.stopTimer = setTimeout(function() {
-        console.log(ui);
         self.element.trigger('dragstop', ui);
         self.dragStarted = false;
     }, 100);
