@@ -1,17 +1,18 @@
 (function($, undefined) {
 
 $.fn.scraggable = function(options) {
-    var scraggable = this.data('scraggable');
+    return this.each(function() {
+        var $this      = $(this);
+        var scraggable = $this.data('scraggable');
 
-    if (typeof(options) == 'string' && scraggable &&
-        $.isFunction($.fn.scraggable.methods[options])) {
-        $.fn.scraggable.methods[options].apply(scraggable);
-    } else if (!scraggable) {
-        options = $.extend({}, $.fn.scraggable.defaults, options);
-        this.data(new Scraggable(this, options));
-    }
-
-    return this;
+        if (typeof(options) == 'string' && scraggable &&
+            $.isFunction($.fn.scraggable.methods[options])) {
+            $.fn.scraggable.methods[options].apply(scraggable);
+        } else if (!scraggable) {
+            options = $.extend({}, $.fn.scraggable.defaults, options);
+            $this.data(new Scraggable($this, options));
+        }
+    });
 };
 
 $.fn.scraggable.methods = {
