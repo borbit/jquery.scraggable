@@ -44,15 +44,15 @@ Default: `false`
 
 ### `dragstart`
 
-This event is triggered when dragging starts.
+This event is triggered when dragging starts (the scroll wheel begins to move).
 
 ### `drag`
 
-This event is triggered when the mouse is moved during the dragging.
+This event is triggered during dragging (when the when the scroll wheel is moving).
 
 ### `dragstop`
 
-This event is triggered when dragging stops
+This event is triggered when dragging stops (the scroll wheel finishes moving).
 
 ## Methods
 
