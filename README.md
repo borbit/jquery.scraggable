@@ -1,12 +1,10 @@
-#About
-
 **jQuery.scraggable** is a plugin that lets you drag elements by means of scrolling, single and multi dimensional (depends on browser). Implementation of this plugin was inspired by working on [HTML5 puzzle](http://puzzle.borbit.org) game you can [see now](http://puzzle.borbit.org). To see it in action just go to [the link](http://puzzle.borbit.com), wait until a puzzle is loaded (beware! puzzle can be > 3 mb) and try to scroll it (sure if your monitor is not bigger than a puzzle). Or you can go to the [plugin's site](http://sorry-no-link-yet) to see all possibilities in action.
 
 To let your element(s) be scraggable just:
 
     $(expression).scraggable([options]);
 
-## Options
+# Options
 
 * *axis*
 
@@ -40,7 +38,7 @@ To let your element(s) be scraggable just:
 
     Default: <code>false</code>
 
-## Methods
+# Methods
 
 * *enable*
 
@@ -50,7 +48,7 @@ To let your element(s) be scraggable just:
 
     Disable the scraggable.
 
-## Compatibilty
+# Compatibilty
 
 Tested in:
 
