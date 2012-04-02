@@ -6,47 +6,47 @@ To let your element(s) be scraggable just:
 
 # Options
 
-* *axis*
+## `axis`
 
-    Constrains dragging to either the horizontal (x) or vertical (y) axis. Possible values:
+Constrains dragging to either the horizontal (x) or vertical (y) axis. Possible values:
 
-        'x', 'y', false
+    'x', 'y', false
 
-    Default <code>false</code>
+Default <code>false</code>
 
-* *parent*
+## `parent`
 
-    A DOM element which will receive the <code>mousewheel</code> event. Possible values:
+A DOM element which will receive the <code>mousewheel</code> event. Possible values:
 
-        'selector', $('selector'), document.getElementById('elementId')
+    'selector', $('selector'), document.getElementById('elementId')
 
-    Default: <code>window.document</code>
+Default: <code>window.document</code>
 
-* *sensitivity*
+## `sensitivity`
 
-    An abstract <code>float</code> value for scroll sensitivity to regulate dragging speed. Default: <code>1</code>
+An abstract <code>float</code> value for scroll sensitivity to regulate dragging speed. Default: <code>1</code>
 
-* *inverted*
+## `inverted`
 
-    <code>Boolean</code> value to invert dragging axis. Default: <code>false</code>
+<code>Boolean</code> value to invert dragging axis. Default: <code>false</code>
 
-* *containment*
+## `containment`
 
-    Constrains dragging to within the bounds of the specified element or region. Possible values:
+Constrains dragging to within the bounds of the specified element or region. Possible values:
 
-         'parent', 'document', [x1, y1, x2, y2], false
+     'parent', 'document', [x1, y1, x2, y2], false
 
-    Default: <code>false</code>
+Default: <code>false</code>
 
 # Methods
 
-* *enable*
+## `enable`
 
-    Enable the scraggable.
+Enable the scraggable.
 
-* *disable*
+## `disable`
 
-    Disable the scraggable.
+Disable the scraggable.
 
 # Compatibilty
 
