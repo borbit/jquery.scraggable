@@ -58,7 +58,7 @@ function Scraggable(element, options) {
         if (!self.dragStarted) {
             self.updateLocation();
         }
-        self.processMouseWhell(event);
+        self.processMouseWheel(event);
         if (event.preventDefault) {
             event.preventDefault();
         } else {
@@ -101,7 +101,7 @@ Scraggable.prototype.disableWheelHandling = function() {
     }
 };
 
-Scraggable.prototype.processMouseWhell = function(event) {
+Scraggable.prototype.processMouseWheel = function(event) {
     var wheelDelta = this.getWheelDelta(event);
 
     var newOffset = {
