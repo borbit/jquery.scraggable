@@ -1,12 +1,14 @@
+# jQuery.scraggable
+
 **jQuery.scraggable** is a plugin that lets you drag elements by means of scrolling, single and multi dimensional (depends on browser).
 
 To make elements scraggable just:
 
     $(selector).scraggable([options]);
 
-# Options
+## Options
 
-## `axis`
+### `axis`
 
 Constrains dragging to either the horizontal (x) or vertical (y) axis. Possible values:
 
@@ -14,7 +16,7 @@ Constrains dragging to either the horizontal (x) or vertical (y) axis. Possible 
 
 Default `false`
 
-## `parent`
+### `parent`
 
 A DOM element which will receive the `mousewheel` event. Possible values:
 
@@ -22,15 +24,15 @@ A DOM element which will receive the `mousewheel` event. Possible values:
 
 Default: `window.document`
 
-## `sensitivity`
+### `sensitivity`
 
 An abstract `float` value for scroll sensitivity to regulate dragging speed. Default: `1`
 
-## `inverted`
+### `inverted`
 
 `Boolean` value to invert dragging axis. Default: `false`
 
-## `containment`
+### `containment`
 
 Constrains dragging to within the bounds of the specified element or region. Possible values:
 
@@ -38,31 +40,31 @@ Constrains dragging to within the bounds of the specified element or region. Pos
 
 Default: `false`
 
-# Events
+## Events
 
-## `dragstart`
+### `dragstart`
 
 This event is triggered when dragging starts.
 
-## `drag`
+### `drag`
 
 This event is triggered when the mouse is moved during the dragging.
 
-## `dragstop`
+### `dragstop`
 
 This event is triggered when dragging stops
 
-# Methods
+## Methods
 
-## `enable`
+### `enable`
 
 Enable the scraggable.
 
-## `disable`
+### `disable`
 
 Disable the scraggable.
 
-# Compatibilty
+## Compatibilty
 
 Tested in:
 
