@@ -12,23 +12,23 @@ Constrains dragging to either the horizontal (x) or vertical (y) axis. Possible 
 
     'x', 'y', false
 
-Default <code>false</code>
+Default `false`
 
 ## `parent`
 
-A DOM element which will receive the <code>mousewheel</code> event. Possible values:
+A DOM element which will receive the `mousewheel` event. Possible values:
 
     'selector', $('selector'), document.getElementById('elementId')
 
-Default: <code>window.document</code>
+Default: `window.document`
 
 ## `sensitivity`
 
-An abstract <code>float</code> value for scroll sensitivity to regulate dragging speed. Default: <code>1</code>
+An abstract `float` value for scroll sensitivity to regulate dragging speed. Default: `1`
 
 ## `inverted`
 
-<code>Boolean</code> value to invert dragging axis. Default: <code>false</code>
+`Boolean` value to invert dragging axis. Default: `false`
 
 ## `containment`
 
@@ -36,7 +36,7 @@ Constrains dragging to within the bounds of the specified element or region. Pos
 
      'parent', 'document', [x1, y1, x2, y2], false
 
-Default: <code>false</code>
+Default: `false`
 
 # Events
 
