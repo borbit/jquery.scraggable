@@ -38,6 +38,20 @@ Constrains dragging to within the bounds of the specified element or region. Pos
 
 Default: <code>false</code>
 
+# Events
+
+## `dragstart`
+
+This event is triggered when dragging starts.
+
+## `drag`
+
+This event is triggered when the mouse is moved during the dragging.
+
+## `dragstop`
+
+This event is triggered when dragging stops
+
 # Methods
 
 ## `enable`
