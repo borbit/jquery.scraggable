@@ -12,7 +12,9 @@
 
 Constrains dragging to either the horizontal (x) or vertical (y) axis. Possible values:
 
-    'x', 'y', false
+* `'x'`
+* `'y'`
+* `false`
 
 Default `false`
 
@@ -20,7 +22,9 @@ Default `false`
 
 A DOM element which will receive the `mousewheel` event. Possible values:
 
-    'selector', $('selector'), document.getElementById('elementId')
+* `'selector'`
+* `$('selector')`
+* `document.getElementById('elementId')`
 
 Default: `window.document`
 
@@ -36,7 +40,10 @@ An abstract `float` value for scroll sensitivity to regulate dragging speed. Def
 
 Constrains dragging to within the bounds of the specified element or region. Possible values:
 
-     'parent', 'document', [x1, y1, x2, y2], false
+* `'parent'`
+* `'document'`
+* `[x1, y1, x2, y2]`
+* `false`
 
 Default: `false`
 
