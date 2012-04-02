@@ -1,6 +1,6 @@
 # jQuery.scraggable
 
-**jQuery.scraggable** is a plugin that lets you drag elements by means of scrolling, single and multi dimensional (depends on browser).
+**jQuery.scraggable** is a plugin that enables single- and multi-dimensional (depending on browser) element dragging through the mouse's scroll wheel.
 
 To make elements scraggable just:
 
