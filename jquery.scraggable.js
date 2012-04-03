@@ -68,10 +68,13 @@ function Scraggable(element, options) {
     };
 
     this.scaleFactor = 2;
-    if (navigator.userAgent.indexOf('Safari') != -1 &&
-        navigator.userAgent.indexOf('Chrome') == -1) {
+    
+    console.log(navigator.userAgent);
+    
+    if (!~navigator.userAgent.indexOf('Chrome') &&
+         ~navigator.userAgent.indexOf('Safari/532.0')) {
         this.scaleFactor = 1200;
-    } else if (navigator.userAgent.indexOf('Chrome') != -1) {
+    } else if (~navigator.userAgent.indexOf('Safari')) {
         this.scaleFactor = 60;
     }
 
@@ -106,8 +109,6 @@ Scraggable.prototype.processMouseWhell = function(event) {
     var wheelDelta = this.getWheelDelta(event);
 
     var newOffset = {
-        //left: Math.floor(this.offset.left + (wheelDelta[0] * this.options.sensitivity)),
-        //top: Math.floor(this.offset.top + (wheelDelta[1] * this.options.sensitivity))
         left: this.offset.left + (wheelDelta[0] * this.options.sensitivity),
         top: this.offset.top + (wheelDelta[1] * this.options.sensitivity)
     };
