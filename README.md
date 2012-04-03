@@ -1,54 +1,75 @@
-#About
+# jQuery.scraggable
 
-**jQuery.scraggable** is a plugin that lets you drag elements by means of scrolling, single and multi dimensional (depends on browser). Implementation of this plugin was inspired by working on [HTML5 puzzle](http://puzzle.borbit.org) game you can [see now](http://puzzle.borbit.org). To see it in action just go to [the link](http://puzzle.borbit.com), wait until a puzzle is loaded (beware! puzzle can be > 3 mb) and try to scroll it (sure if your monitor is not bigger than a puzzle). Or you can go to the [plugin's site](http://sorry-no-link-yet) to see all possibilities in action.
+**jQuery.scraggable** is a plugin that enables single- and multi-dimensional (depending on browser) element dragging through the mouse's scroll wheel.
 
-To let your element(s) be scraggable just:
+## Usage
 
-    $(expression).scraggable([options]);
+    $(selector).scraggable([options]);
 
 ## Options
 
-* *axis*
+### `axis`
 
-    Constrains dragging to either the horizontal (x) or vertical (y) axis. Possible values:
+Constrains dragging to either the horizontal (x) or vertical (y) axis. Possible values:
 
-        'x', 'y', false
+* `'x'`
+* `'y'`
+* `false`
 
-    Default <code>false</code>
+Default `false`
 
-* *parent*
+### `parent`
 
-    A DOM element which will receive the <code>mousewheel</code> event. Possible values:
+A DOM element which will receive the `mousewheel` event. Possible values:
 
-        'selector', $('selector'), document.getElementById('elementId')
+* `'selector'`
+* `$('selector')`
+* `document.getElementById('elementId')`
 
-    Default: <code>window.document</code>
+Default: `window.document`
 
-* *sensitivity*
+### `sensitivity`
 
-    An abstract <code>float</code> value for scroll sensitivity to regulate dragging speed. Default: <code>1</code>
+An abstract `float` value for scroll sensitivity to regulate dragging speed. Default: `1`
 
-* *inverted*
+### `inverted`
 
-    <code>Boolean</code> value to invert dragging axis. Default: <code>false</code>
+`Boolean` value to invert dragging axis. Default: `false`
 
-* *containment*
+### `containment`
 
-    Constrains dragging to within the bounds of the specified element or region. Possible values:
+Constrains dragging to within the bounds of the specified element or region. Possible values:
 
-         'parent', 'document', [x1, y1, x2, y2], false
+* `'parent'`
+* `'document'`
+* `[x1, y1, x2, y2]`
+* `false`
 
-    Default: <code>false</code>
+Default: `false`
+
+## Events
+
+### `dragstart`
+
+This event is triggered when dragging starts (the scroll wheel begins to move).
+
+### `drag`
+
+This event is triggered during dragging (when the when the scroll wheel is moving).
+
+### `dragstop`
+
+This event is triggered when dragging stops (the scroll wheel finishes moving).
 
 ## Methods
 
-* *enable*
+### `enable`
 
-    Enable the scraggable.
+Enable the scraggable.
 
-* *disable*
+### `disable`
 
-    Disable the scraggable.
+Disable the scraggable.
 
 ## Compatibilty
 
