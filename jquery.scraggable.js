@@ -69,8 +69,6 @@ function Scraggable(element, options) {
 
     this.scaleFactor = 2;
     
-    console.log(navigator.userAgent);
-    
     if (!~navigator.userAgent.indexOf('Chrome') &&
          ~navigator.userAgent.indexOf('Safari/532.0')) {
         this.scaleFactor = 1200;
