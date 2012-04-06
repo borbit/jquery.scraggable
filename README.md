@@ -73,6 +73,6 @@ Disable the scraggable.
 
 ## License 
 
-jQuery.scraggable is available under the terms of the [MIT license](http://en.wikipedia.org/wiki/MIT_License#License_terms).
+jQuery.Scraggable may be freely distributed under the [MIT license](http://en.wikipedia.org/wiki/MIT_License#License_terms).
 
 Copyright (c) 2011-2012 Serge Borbit (serge.borbit@gmail.com)
