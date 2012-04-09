@@ -55,11 +55,11 @@ function Scraggable(element, options) {
     }
 
     var self = this;
-    this.onmousewhell = function(event) {
+    this.onmousewheel = function(event) {
         if (!self.dragStarted) {
             self.updateLocation();
         }
-        self.processMouseWhell(event);
+        self.processMouseWheel(event);
         if (event.preventDefault) {
             event.preventDefault();
         } else {
@@ -91,19 +91,19 @@ Scraggable.prototype.updateLocation = function() {
 
 Scraggable.prototype.enableWheelHandling = function() {
     if (this.parent.get(0).addEventListener) {
-        this.parent.get(0).addEventListener('mousewheel', this.onmousewhell, false);
-        this.parent.get(0).addEventListener('DOMMouseScroll', this.onmousewhell, false);
+        this.parent.get(0).addEventListener('mousewheel', this.onmousewheel, false);
+        this.parent.get(0).addEventListener('DOMMouseScroll', this.onmousewheel, false);
     }
 };
 
 Scraggable.prototype.disableWheelHandling = function() {
     if (this.parent.get(0).removeEventListener) {
-        this.parent.get(0).removeEventListener('mousewheel', this.onmousewhell, false);
-        this.parent.get(0).removeEventListener('DOMMouseScroll', this.onmousewhell, false);
+        this.parent.get(0).removeEventListener('mousewheel', this.onmousewheel, false);
+        this.parent.get(0).removeEventListener('DOMMouseScroll', this.onmousewheel, false);
     }
 };
 
-Scraggable.prototype.processMouseWhell = function(event) {
+Scraggable.prototype.processMouseWheel = function(event) {
     var wheelDelta = this.getWheelDelta(event);
 
     var newOffset = {
