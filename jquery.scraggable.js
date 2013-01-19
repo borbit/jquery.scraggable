@@ -1,3 +1,14 @@
+/*    
+    jQuery.Scraggable 0.1.0
+    
+    Enables single- and multi-dimensional (depending on browser)
+    element dragging through the mouse's scroll wheel. For all details
+    and documentation: https://github.com/borbit/jquery.scraggable
+    
+    Copyright (c) 2011-2013 Serge Borbit <serge.borbit@gmail.com>
+    
+    Licensed under the MIT license
+*/
 (function($, undefined) {
 
 $.fn.scraggable = function(options) {
@@ -135,8 +146,8 @@ Scraggable.prototype.fixOffset = function(newOffset) {
 };
 
 Scraggable.prototype.setPosition = function(newOffset) {
-    var diffTop = newOffset.top - this.offset.top;
-    var diffLeft = newOffset.left - this.offset.left;
+    var diffTop = ~~(newOffset.top - this.offset.top);
+    var diffLeft = ~~(newOffset.left - this.offset.left);
 
     if (!this.options.axis || this.options.axis == 'x') {
         this.position.left += (this.options.inverted ? diffTop : diffLeft);
