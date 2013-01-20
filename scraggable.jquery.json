@@ -1,5 +1,5 @@
 {
-  "name": "jquery.scraggable",
+  "name": "scraggable",
   "title": "jQuery Scraggable",
   "description": "Enables single- and multi-dimensional (depending on browser) element dragging through the mouse's scroll wheel.",
   "keywords": [
