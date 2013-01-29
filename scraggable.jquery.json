@@ -3,23 +3,28 @@
   "title": "jQuery Scraggable",
   "description": "Enables single- and multi-dimensional (depending on browser) element dragging through the mouse's scroll wheel.",
   "keywords": [
-    "ui", "dragging"
+    "ui",
+    "drag",
+    "scroll"
   ],
   "version": "0.1.0",
   "author": {
     "name": "Serge Borbit",
-    "email": "serge.borbit@gmail.com"
+    "email": "serge.borbit@gmail.com",
+    "url": "https://github.com/borbit"
   },
-  "licenses": [{
-    "type": "MIT",
-    "url": "http://en.wikipedia.org/wiki/MIT_License#License_terms"
-  }],
+  "licenses": [
+    {
+      "type": "MIT",
+      "url": "http://en.wikipedia.org/wiki/MIT_License#License_terms"
+    }
+  ],
+  "dependencies": {
+    "jquery": ">=1.4.3"
+  },
   "bugs": "https://github.com/borbit/jquery.scraggable/issues",
   "homepage": "https://github.com/borbit/jquery.scraggable",
   "download": "https://github.com/borbit/jquery.scraggable",
   "demo": "http://borbit.github.com/jquery.viewport/",
-  "docs": "https://github.com/borbit/jquery.scraggable",
-  "dependencies": {
-    "jquery": ">=1.5"
-  }
+  "docs": "https://github.com/borbit/jquery.scraggable"
 }
